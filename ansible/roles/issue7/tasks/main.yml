@@ -1,0 +1,28 @@
+---
+- name: Install git
+  apt: "name='git' state=present force=yes"
+- name: Fetch issue7 sources
+  git:
+    repo: https://github.com/DronMDF/issue7.git
+    dest: "{{project_dir}}/{{project_name}}"
+    version: master
+    force: true
+- name: Copy issue7 settings
+  template: "src=roles/issue7/templates/settings.j2 dest={{project_dir}}/{{project_name}}/app/settings.py"
+- name: Initialize project
+  django_manage:
+    command: "{{item}}"
+    app_path: "{{project_dir}}/{{project_name}}"
+  with_items:
+    - migrate
+    - collectstatic
+- name: Change directory permission
+  file:
+    path: "{{project_dir}}/{{project_name}}"
+    mode: 0775
+    group: www-data
+- name: Change database permission
+  file:
+    path: "{{project_dir}}/{{project_name}}/db.sqlite3"
+    mode: 0664
+    group: www-data

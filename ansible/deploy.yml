@@ -1,0 +1,12 @@
+---
+- hosts: issue7
+  vars:
+    project_name: issue7
+    project_dir: /usr/share/issue7
+  vars_files:
+    - /etc/ansible/issue7.yml
+  roles:
+    - base
+    - app
+    - uwsgi
+    - nginx
