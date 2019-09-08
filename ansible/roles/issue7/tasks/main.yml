@@ -8,7 +8,7 @@
     version: master
     force: true
 - name: Copy issue7 settings
-  template: "src=roles/issue7/templates/settings.j2 dest={{project_dir}}/app/settings.py"
+  template: "src=roles/issue7/templates/settings.j2 dest={{project_dir}}/app/app/settings.py"
 - name: Initialize project
   django_manage:
     command: "{{item}}"
