@@ -7,6 +7,6 @@
     - /etc/ansible/issue7.yml
   roles:
     - base
-    - app
+    - issue7
     - uwsgi
     - nginx

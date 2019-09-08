@@ -1,8 +1,6 @@
 ---
 - name: Install nginx
   apt: "name='nginx' state=present force=yes"
-- name: Install letsencrypt
-  apt: "name='letsencrypt' state=present force=yes"
 - name: Remove unneeded files
   file: "path=/etc/nginx/sites-enabled/default state=absent"
 - name: copy nginx config of project
